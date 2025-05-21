@@ -75,8 +75,7 @@ namespace Lab7_MathProg
                 for (int j = 0; j < range; j++)
                     init[i,j] = matrix[i,j];
            
-            do
-            {
+
                 //Получение нулей в каждой строке
                 for (int i = 0; i < range; i++)
                 {
@@ -105,7 +104,8 @@ namespace Lab7_MathProg
                     for (int j = 0; j < range; j++)
                         matrix[j, i] -= minValue;
                 }
-
+            do
+            { 
                 //Поиск оптимального решения
                 int[,] check = new int[range, range];
                 int minZeroIndex;
@@ -203,11 +203,13 @@ namespace Lab7_MathProg
 
                     }
                 }
+                //1.3
                 for (int i = 0; i < range; i++)
                     if (!cols[i])
                         for (int j = 0; j < range; j++)
                             if (check[j, i] == 1)
                                 rows[j] = false;
+
                 List<int> list = new List<int>();
                 for (int i = 0; i < range; i++)
                     for (int j = 0; j < range; j++)
@@ -215,7 +217,7 @@ namespace Lab7_MathProg
                             list.Add(matrix[i, j]);
                 int min = list.Min();
                 for (int i = 0; i < range; i++)
-                    if (rows[i])
+                    if (!rows[i])
                         for (int j = 0; j < range; j++)
                             matrix[i, j] -= min;
                 for (int i = 0; i < range; i++)
